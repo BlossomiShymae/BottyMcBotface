@@ -258,7 +258,12 @@ export default class Admin {
 
             if (action === "ban") {
                 await member.ban({ reason: (reason.length > 0 ? this.shorten(reason) : "No reason") + " -" + message.author.username })
-                    .then(() => { this.logSuccessMessage(message, member, note, reason, words); removed++ })
+                    .then(async () => {
+                        this.logSuccessMessage(message, member, note, reason, words);
+                        // send cute airplane departure message as verification on ban success, hehe
+                        await message.channel.send("🛫");
+                        removed++;
+                    })
                     .catch((e) => this.replySecretMessage(message, `Failed to ${words[0]} ${member}: ${e}`));
             } else if (action === "kick") {
                 await member.kick((reason.length > 0 ? this.shorten(reason) : "No reason") + " -" + message.author.username)
