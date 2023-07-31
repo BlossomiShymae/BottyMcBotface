@@ -63,10 +63,6 @@ export interface SharedSettings {
         maxGuessCount: number;
     };
 
-    uptimeSettings: {
-        checkInterval: number,
-    };
-
     admin: {
         muteRoleId: string;
         muteRoleName: string;
@@ -194,6 +190,10 @@ export interface SharedSettings {
     spam: {
         allowedUrls: string[];
         ignoredRoles: string[];
+        floodMessageThreshold: number;
+        floodMessageTime: number;
+        duplicateMessageThreshold: number;
+        duplicateMessageTime: number;
     };
 
     userIntro: {

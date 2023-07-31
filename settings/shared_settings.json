@@ -68,9 +68,6 @@
         "updateTimeout": 18000000,
         "printToChannelTimeout": 43200000
     },
-    "uptimeSettings": {
-        "checkInterval": 60000
-    },
     "techBlog": {
         "checkInterval": 300000,
         "channel": "tech-articles",
@@ -209,7 +206,11 @@
         "ignoredRoles": [
             "1055545240058073138",
             "1097223791836414073"
-        ]
+        ],
+        "duplicateMessageThreshold": 4,
+        "duplicateMessageTime": 30,
+        "floodMessageThreshold": 3,
+        "floodMessageTime": 4
     },
     "userIntro": {
         "icon": {
