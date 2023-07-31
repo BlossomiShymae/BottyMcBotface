@@ -339,7 +339,17 @@ export default class Info {
         const maxLength = 80;
 
         if (!isLocal) {
-            message.channel.send(url.resolve(this.sharedSettings.botty.webServer.relativeLiveLocation, "notes"));
+            // Output note list as attachment
+            try {
+                const buffer = Buffer.from(JSON.stringify(this.infos, null, 2), 'utf-8');
+                const attachment = new Discord.AttachmentBuilder(buffer, {name: 'notes.json'});
+                await message.channel.send({ content: `📝 Here are the notes you requested, bby:`, files: [attachment]});
+            } catch (e) {
+                message.edit("Oh no, uploading notes failed :c").catch((reason) => {
+                    console.error(`Error occured when trying to edit the message when the upload failed, reason: ${reason}\nreason for failed upload: ${e}`);
+                });
+                console.error(`Error trying to output notes: ${e.message}`);
+            }
             return;
         }
 
